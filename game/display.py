@@ -18,7 +18,8 @@ class display:
 
     def display_jumper(self):
         # Display the jumper.
-        for i in len(self.body):
+        for i in range(len(self.body)):
+            assert 0 < i-1 < len(self.body)
             print(self.body[i-1])
         print()
         print(self.danger_floor)
@@ -26,3 +27,7 @@ class display:
     def update_jumper(self):
         # Remove body parts.
         self.body.pop(0)
+
+    def split_word(word):
+        # Split up the word and display it.
+        print(" ".join(word))
