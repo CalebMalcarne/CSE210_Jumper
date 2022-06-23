@@ -6,3 +6,5 @@ from game.Director import Director
 game = Director()
 
 game = game.start_game()
+
+#this is subject to change since this was submitted before the director was committed. 
