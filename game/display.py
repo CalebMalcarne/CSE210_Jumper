@@ -31,3 +31,4 @@ class display:
     def split_word(word):
         # Split up the word and display it.
         print(" ".join(word))
+        
