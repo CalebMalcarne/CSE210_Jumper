@@ -1,6 +1,6 @@
-from game.display import display
-from game.Comparison import comparison
-from game.Word import word
+from .display import Display
+from .comparison import comparison
+from .word import word
 
 class Director:
     """ A person who directs the game. 
@@ -19,11 +19,8 @@ class Director:
         Args: 
             self (Director): an instance of Director.
         """
-        self._word = word()
         self.answers = []
-        self._comparison = comparison()
         self._is_playing = True
-        self._display = display()
 
     def start_game(self):
         """Starts the game by running the main game loop.
@@ -31,16 +28,22 @@ class Director:
         Args:
             self (Director): an instance of Director.
         """
+        word.gen_Word(word)
+        Display.create_jumper(Display)
+
         while self._is_playing:
-            self._do_outputs()
+
             # shows display
-            self._get_inputs()
+            self._do_outputs()
+
             # Asks for inputs
-            self._get_updates()
+            self._get_inputs()
+
             # Makes sure game is still going
+            self._get_updates()
         
-        self._do_outputs()
         # One final output of the guy dying or of victory
+        self._do_outputs()
 
     def _do_outputs(self):
         """Provides the graphic
@@ -51,7 +54,8 @@ class Director:
         #self._display.display_jumper(self._word, self.answers, self._is_playing)
             # What will this need? Will it need both the word and comparison, and if so,
             # does that mean I should put it independently?
-        self._display.display_jumper()
+        Display.split_word(word.get_Word(word))
+        Display.display_jumper(Display)
     
     def _get_inputs(self):
         """Gets user's input, validates it, and adds it to the list self.answers.
@@ -63,7 +67,7 @@ class Director:
             "a","b","c","d","e","f","g","h","i","j","k","l","m","n","o",
             "p","q","r","s","t","u","v","w","x","y","z"
         ]
-        while user_input.lower() != possible_answers:
+        while user_input.lower() not in possible_answers:
             user_input = input("Oops!\nPlease guess a letter [a-z]: ")
 
         self.answers.append(user_input)
@@ -73,4 +77,7 @@ class Director:
         Args:
             self (Director): An instance of Director.
         """
-        self._comparison(self.answers, self._word)
+        user_input = self.answers[-1]
+        change = comparison.compare(word._chosen_Word, user_input)
+        if change == True:
+            print(True)
