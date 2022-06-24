@@ -1,6 +1,6 @@
 from .display import Display
 from .comparison import comparison
-from .word import word
+from .Word import word
 
 class Director:
     """ A person who directs the game. 
