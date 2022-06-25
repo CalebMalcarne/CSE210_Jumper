@@ -1,4 +1,6 @@
-# Written by Michael Darling.
+# Written by Michael Darling & Caleb Malcarne
+import os
+import sys
 
 class Display:
     
@@ -20,6 +22,11 @@ class Display:
         # so that it doesn't mess up the counter.
         self.danger_floor = "^^^^^^^"
 
+    def lose(self):
+        
+        self.body[0]= ("   X   ")
+        self.display_jumper(self)
+
     def display_jumper(self):
         # Display the jumper.
         print()
@@ -32,6 +39,27 @@ class Display:
         # Remove body parts.
         self.body.pop(0)
 
-    def split_word(word):
-        # Split up the word and display it.
-        print(" ".join(word))
+    def split_word(self, word, answers):
+        my_os=sys.platform
+        if my_os == "win32":
+            os.system('cls')
+        else:
+            os.system('clear')
+        #checks to see which correct answers have been guessed
+        #if it has it prints the letter otherwise is pritns '_'
+        word_State = ""       
+        for letter in word:
+            if letter in answers:
+                word_State += letter + ' '
+            else:
+                word_State += '_ '
+        print(word_State)
+        if self.get_Status(self) == 3:
+            print("To many faild guess's!, You Lose!")
+        elif ''.join(answers) == word:
+            print("Correct!, You Win!")
+
+
+    def get_Status(self):
+        return len(self.body)
+    
