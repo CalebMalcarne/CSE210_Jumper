@@ -1,4 +1,4 @@
-# Written by Michael Darling & Caleb Malcarne
+# Written by Michael Darling
 import os
 import sys
 
