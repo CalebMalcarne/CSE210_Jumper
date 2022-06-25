@@ -15,12 +15,6 @@ class word():
         
         self._chosen_Word = _wordList[random.randint(0, len(_wordList) - 1)].lower()
         
-        # Transform the chosen_Word into a hidden_Word.
-        #self._hidden_Word = self._chosen_Word
-        #for i in range(0, len(self._hidden_Word)):
-        #    self._hidden_Word.replace(word[i], "_")
-        #print(self._hidden_Word)
-
     def word_Len(self):
         return len(self._chosen_Word)
 
